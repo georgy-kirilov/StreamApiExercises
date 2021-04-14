@@ -13,10 +13,16 @@ public class Program
 		
 		TemperatureInfo first = temperatureInfos.get(0);
 		
-		printUniqueCitiesWithHighTemperatures(temperatureInfos);
+		//printUniqueCitiesWithHighTemperatures(temperatureInfos);
+		
+		//System.out.println();
+		//printUniqueCountriesWithNegativeTemperatures(temperatureInfos);
+		
+		//System.out.println();
+		//printCountriesWhereTemperatureAndMounthsEqualGiven(temperatureInfos);
 		
 		System.out.println();
-		printUniqueCountriesWithNegativeTemperatures(temperatureInfos);
+		printCitiesWhereLocationIsInNorth(temperatureInfos);
 		
 	}
 
@@ -42,4 +48,30 @@ public class Program
 			.distinct()
 			.forEach(country -> System.out.println(country));
 	}
+	
+	static void printCountriesWhereTemperatureAndMounthsEqualGiven(List<TemperatureInfo> temperatureInfos)
+	{
+		temperatureInfos.stream()
+		.filter(x -> x.asCelcius() >=0 && x.asCelcius() <= 15)
+		.filter(x -> x.getMonth() == 3 || x.getMonth() == 4)
+		.map(x -> x.getCountry())
+		.distinct()
+		.forEach(country -> System.out.println(country));
+		
+	}
+	
+	
+	static void printCitiesWhereLocationIsInNorth(List<TemperatureInfo> temperatureInfos)
+	{
+		temperatureInfos.stream()
+		.filter(x -> x.getLatitude().isNorth())
+		.map(x -> x.getCity())
+		.distinct()
+		.forEach(city -> System.out.println(city));
+		
+	}
+	/*Vsички държави, в които температурата е варирала между 0 и 15 градуса през месеците март и април
+	Всички градове, които се намират в северното полукълбо
+	Трите най-близо намиращи се до Екватора града
+	*/
 }

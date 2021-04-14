@@ -23,6 +23,7 @@ public class Program
 		
 		System.out.println();
 		printCitiesWhereLocationIsInNorth(temperatureInfos);
+	
 		
 	}
 

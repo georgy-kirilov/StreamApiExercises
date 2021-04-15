@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 public class Program
 {
-
 	public static void main(String[] args)
 	{
 		List<TemperatureInfo> temperatureInfos = CsvFileParser.parse("./resources/temperature.csv");
@@ -13,18 +12,16 @@ public class Program
 		
 		TemperatureInfo first = temperatureInfos.get(0);
 		
-		//printUniqueCitiesWithHighTemperatures(temperatureInfos);
-		
-		//System.out.println();
-		//printUniqueCountriesWithNegativeTemperatures(temperatureInfos);
-		
-		//System.out.println();
-		//printCountriesWhereTemperatureAndMounthsEqualGiven(temperatureInfos);
+		printUniqueCitiesWithHighTemperatures(temperatureInfos);
 		
 		System.out.println();
-		printCitiesWhereLocationIsInNorth(temperatureInfos);
-	
+		printUniqueCountriesWithNegativeTemperatures(temperatureInfos);
 		
+		System.out.println();
+		printCountriesWhereTemperatureAndMounthsEqualGiven(temperatureInfos);
+		
+		System.out.println();
+		printCitiesWithNorthLocation(temperatureInfos);
 	}
 
 	static void printUniqueCitiesWithHighTemperatures(List<TemperatureInfo> temperatureInfos)
@@ -36,7 +33,7 @@ public class Program
 			.map(x -> x.getCity())
 			.distinct()
 			.collect(Collectors.toList())
-			.forEach(city -> System.out.println(city));
+			.forEach(System.out::println);
 	}
 	
 	static void printUniqueCountriesWithNegativeTemperatures(List<TemperatureInfo> temperatureInfos)
@@ -47,32 +44,25 @@ public class Program
 			.filter(x -> x.asCelcius() < 0)
 			.map(x -> x.getCountry())
 			.distinct()
-			.forEach(country -> System.out.println(country));
+			.forEach(System.out::println);
 	}
 	
 	static void printCountriesWhereTemperatureAndMounthsEqualGiven(List<TemperatureInfo> temperatureInfos)
 	{
 		temperatureInfos.stream()
-		.filter(x -> x.asCelcius() >=0 && x.asCelcius() <= 15)
-		.filter(x -> x.getMonth() == 3 || x.getMonth() == 4)
-		.map(x -> x.getCountry())
-		.distinct()
-		.forEach(country -> System.out.println(country));
-		
+			.filter(x -> x.asCelcius() >= 0 && x.asCelcius() <= 15)
+			.filter(x -> x.getMonth() == 3 || x.getMonth() == 4)
+			.map(x -> x.getCountry())
+			.distinct()
+			.forEach(System.out::println);
 	}
 	
-	
-	static void printCitiesWhereLocationIsInNorth(List<TemperatureInfo> temperatureInfos)
+	static void printCitiesWithNorthLocation(List<TemperatureInfo> temperatureInfos)
 	{
 		temperatureInfos.stream()
-		.filter(x -> x.getLatitude().isNorth())
-		.map(x -> x.getCity())
-		.distinct()
-		.forEach(city -> System.out.println(city));
-		
+			.filter(x -> x.getLatitude().isNorth())
+			.map(x -> x.getCity())
+			.distinct()
+			.forEach(System.out::println);
 	}
-	/*Vsички държави, в които температурата е варирала между 0 и 15 градуса през месеците март и април
-	Всички градове, които се намират в северното полукълбо
-	Трите най-близо намиращи се до Екватора града
-	*/
 }

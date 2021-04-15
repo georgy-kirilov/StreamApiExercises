@@ -3,29 +3,31 @@ package streamapi;
 public class Latitude
 {
 	private boolean north;
-	private double degree;
+	private double degrees;
 	
-	public Latitude(boolean north, double degree)
+	public Latitude(boolean north, double degrees)
 	{
 		setNorth(north);
-		setDegree(degree);
+		setDegrees(degrees);
 	}
 	
 	public boolean isNorth()
 	{
 		return north;
 	}
+	
 	public void setNorth(boolean north)
 	{
 		this.north = north;
 	}
 	
-	public double getDegree()
+	public double getDegrees()
 	{
-		return degree;
+		return degrees;
 	}
-	public void setDegree(double degree)
+	
+	public void setDegrees(double degrees)
 	{
-		this.degree = degree;
+		this.degrees = degrees;
 	}
 }

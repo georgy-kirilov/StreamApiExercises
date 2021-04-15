@@ -37,6 +37,7 @@ public class TemperatureInfo
 	{
 		return year;
 	}
+	
 	public void setYear(int year)
 	{
 		this.year = year;
@@ -51,26 +52,32 @@ public class TemperatureInfo
 	{
 		this.averageTemperatureFahr = averageTemperatureFahr;
 	}
+	
 	public String getCity()
 	{
 		return city;
 	}
+	
 	public void setCity(String city)
 	{
 		this.city = city;
 	}
+	
 	public String getCountry()
 	{
 		return country;
 	}
+	
 	public void setCountry(String country)
 	{
 		this.country = country;
 	}
+	
 	public Latitude getLatitude()
 	{
 		return latitude;
 	}
+	
 	public void setLatitude(Latitude latitude)
 	{
 		this.latitude = latitude;

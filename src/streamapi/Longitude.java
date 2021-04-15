@@ -3,12 +3,12 @@ package streamapi;
 public class Longitude
 {
 	private boolean east;
-	private double degree;
+	private double degrees;
 	
-	public Longitude(boolean east, double degree)
+	public Longitude(boolean east, double degrees)
 	{
 		setEast(east);
-		setDegree(degree);
+		setDegrees(degrees);
 	}
 	
 	public boolean isEast()
@@ -21,13 +21,13 @@ public class Longitude
 		this.east = east;
 	}
 	
-	public double getDegree()
+	public double getDegrees()
 	{
-		return degree;
+		return degrees;
 	}
 	
-	public void setDegree(double degree)
+	public void setDegrees(double degrees)
 	{
-		this.degree = degree;
+		this.degrees = degrees;
 	}
 }

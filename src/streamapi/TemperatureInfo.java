@@ -83,6 +83,11 @@ public class TemperatureInfo
 		this.latitude = latitude;
 	}
 	
+	public double getLatitudeValue()
+	{
+		return this.latitude.getDegrees();	
+	}
+	
 	public Longitude getLongitude()
 	{
 		return longitude;

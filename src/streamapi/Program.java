@@ -1,5 +1,6 @@
 package streamapi;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,9 @@ public class Program
 		
 		System.out.println();
 		printCitiesWithNorthLocation(temperatureInfos);
+		
+		System.out.println();
+		printClosestToEkvatorCitites(temperatureInfos);
 	}
 
 	static void printUniqueCitiesWithHighTemperatures(List<TemperatureInfo> temperatureInfos)
@@ -65,4 +69,43 @@ public class Program
 			.distinct()
 			.forEach(System.out::println);
 	}
+	
+	static void printClosestToEkvatorCitites(List<TemperatureInfo> temperatureInfos)
+	{
+		/*
+		Comparator<TemperatureInfo> c = new Comparator<TemperatureInfo>()
+		{
+
+			@Override
+			public int compare(TemperatureInfo arg0, TemperatureInfo arg1)
+			{
+				if(arg0.getLatitude().getDegrees() > arg1.getLatitude().getDegrees())
+				return 1;
+				
+				if (arg0.getLatitude().getDegrees() < arg1.getLatitude().getDegrees()) 
+				return -1;
+				
+				return 0;
+				
+			}
+			
+		};
+		temperatureInfos.stream().sorted(c).map(x -> x.getCity()).distinct().limit(3).forEach(x -> System.out.println(x));
+		*/
+		
+		
+		/*
+		temperatureInfos.stream()
+		.sorted((a, b) -> a.getLatitude().getDegrees()>b.getLatitude().getDegrees() ?
+				1 : a.getLatitude().getDegrees() < b.getLatitude().getDegrees() ?
+				-1 : 0)
+		.map(x -> x.getCity()).distinct().limit(3).forEach(x -> System.out.println(x));
+		*/
+		
+		
+		temperatureInfos.stream().sorted(Comparator.comparingDouble(TemperatureInfo::getLatitudeValue))
+		.map(x -> x.getCity()).distinct().limit(3).forEach(System.out::println);
+	}
+	
+	
 }

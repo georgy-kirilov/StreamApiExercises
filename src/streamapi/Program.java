@@ -4,6 +4,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+
 public class Program
 {
 	public static void main(String[] args)
@@ -26,6 +28,12 @@ public class Program
 		
 		System.out.println();
 		printClosestToEkvatorCitites(temperatureInfos);
+		
+		System.out.println();
+		 maxTemperatureSouth(temperatureInfos);
+		 
+		 System.out.println();
+		 temperatureInfoData1990( temperatureInfos);
 	}
 
 	static void printUniqueCitiesWithHighTemperatures(List<TemperatureInfo> temperatureInfos)
@@ -105,7 +113,36 @@ public class Program
 		
 		temperatureInfos.stream().sorted(Comparator.comparingDouble(TemperatureInfo::getLatitudeValue))
 		.map(x -> x.getCity()).distinct().limit(3).forEach(System.out::println);
+		
 	}
 	
+	static void maxTemperatureSouth(List<TemperatureInfo> temperatureInfos)
+	{
+		TemperatureInfo info =temperatureInfos.stream()
+			.filter(x -> !x.getLatitude().isNorth())
+			.max(Comparator.comparingDouble(TemperatureInfo::getAverageTemperatureFahr)).get();
+		
+		if(info!= null)
+		{
+			System.out.println(info.getAverageTemperatureFahr());
+		}
+	}
+	
+	static void temperatureInfoData1990(List<TemperatureInfo> temperatureInfos)
+	{
+		temperatureInfos.stream()
+		.filter(x -> x.getYear() == 1990)
+		.map(x -> x.getCity())
+		.sorted(Comparator.reverseOrder())
+		.distinct()
+		.forEach(x -> System.out.println(x));
+	}
+	
+	
+	//Най-ниската температура измерена на юг от Марсилия
+	
+	static void minTemperatureMarseilleSouth(List<TemperatureInfo> temperatureInfos)
+	{
+	}
 	
 }

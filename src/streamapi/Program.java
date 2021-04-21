@@ -32,6 +32,10 @@ public class Program
 		
 		System.out.println();
 		printClosestToEkvatorCitites(temperatureInfos);
+		
+		System.out.println();
+		temperatureWhereYearBetween1950and1965(temperatureInfos);
+		
 	}
 
 	static void printUniqueCitiesWithHighTemperatures(List<TemperatureInfo> temperatureInfos)
@@ -128,6 +132,19 @@ public class Program
 		
 		temperatureInfos.stream().sorted(Comparator.comparingDouble(TemperatureInfo::getLatitudeValue))
 		.map(x -> x.getCity()).distinct().limit(3).forEach(System.out::println);
+		
+	}
+	
+	/*
+		Всички градове  в които в периода 1950 - 1965 е било под 10 градуса през третото тримесечие
+		имената им да са сортирани в низходящ ред от Z към А
+	*/
+	
+	public static void temperatureWhereYearBetween1950and1965(List<TemperatureInfo> temperatureInfos)
+	{
+		temperatureInfos.stream().filter(x -> x.getYear()>=1950 && x.getYear()<=1965 
+				&& x.asCelcius()<10 && x.getMonth()>=7 && x.getMonth()<=9)
+				.map(x -> x.getCity()).sorted(Comparator.reverseOrder()).distinct().forEach(System.out::println);
 		
 	}
 }

@@ -4,8 +4,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
-
 public class Program
 {
 	public static void main(String[] args)
@@ -15,6 +13,12 @@ public class Program
 		
 		TemperatureInfo first = temperatureInfos.get(0);
 		
+		printYearsOfDecemberTemperaturesInSouth(temperatureInfos);
+		
+		System.out.println();
+		minTemperatureMarseilleSouth(temperatureInfos);
+		
+		System.out.println();
 		printUniqueCitiesWithHighTemperatures(temperatureInfos);
 		
 		System.out.println();
@@ -28,12 +32,6 @@ public class Program
 		
 		System.out.println();
 		printClosestToEkvatorCitites(temperatureInfos);
-		
-		System.out.println();
-		 maxTemperatureSouth(temperatureInfos);
-		 
-		 System.out.println();
-		 temperatureInfoData1990( temperatureInfos);
 	}
 
 	static void printUniqueCitiesWithHighTemperatures(List<TemperatureInfo> temperatureInfos)
@@ -65,6 +63,24 @@ public class Program
 			.filter(x -> x.asCelcius() >= 0 && x.asCelcius() <= 15)
 			.filter(x -> x.getMonth() == 3 || x.getMonth() == 4)
 			.map(x -> x.getCountry())
+			.distinct()
+			.forEach(System.out::println);
+	}
+	
+	static void minTemperatureMarseilleSouth(List<TemperatureInfo> temperatureInfos)
+	{
+		temperatureInfos.stream()
+			.filter(x -> x.getMonth() < 4 && x.getCity().equals("Marseille") && x.asCelcius() > 12)
+			.map(x -> x.getYear())
+			.distinct()
+			.forEach(System.out::println);
+	}
+	
+	static void printYearsOfDecemberTemperaturesInSouth(List<TemperatureInfo> temperatureInfos)
+	{
+		temperatureInfos.stream()
+			.filter(t -> t.getMonth() == 12 && !t.getLatitude().isNorth() && t.asCelcius() < 15)
+			.map(t -> t.getYear())
 			.distinct()
 			.forEach(System.out::println);
 	}
@@ -110,39 +126,8 @@ public class Program
 		.map(x -> x.getCity()).distinct().limit(3).forEach(x -> System.out.println(x));
 		*/
 		
-		
 		temperatureInfos.stream().sorted(Comparator.comparingDouble(TemperatureInfo::getLatitudeValue))
 		.map(x -> x.getCity()).distinct().limit(3).forEach(System.out::println);
 		
 	}
-	
-	static void maxTemperatureSouth(List<TemperatureInfo> temperatureInfos)
-	{
-		TemperatureInfo info =temperatureInfos.stream()
-			.filter(x -> !x.getLatitude().isNorth())
-			.max(Comparator.comparingDouble(TemperatureInfo::getAverageTemperatureFahr)).get();
-		
-		if(info!= null)
-		{
-			System.out.println(info.getAverageTemperatureFahr());
-		}
-	}
-	
-	static void temperatureInfoData1990(List<TemperatureInfo> temperatureInfos)
-	{
-		temperatureInfos.stream()
-		.filter(x -> x.getYear() == 1990)
-		.map(x -> x.getCity())
-		.sorted(Comparator.reverseOrder())
-		.distinct()
-		.forEach(x -> System.out.println(x));
-	}
-	
-	
-	//Най-ниската температура измерена на юг от Марсилия
-	
-	static void minTemperatureMarseilleSouth(List<TemperatureInfo> temperatureInfos)
-	{
-	}
-	
 }

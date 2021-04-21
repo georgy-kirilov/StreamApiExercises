@@ -26,4 +26,18 @@ public class Anastasia_Nikova
 		.distinct()
 		.forEach(x -> System.out.println(x));
 	}
+	
+	static void citiesFromNorthToSouth(List<TemperatureInfo> temperatureInfos)
+	{
+		Comparator c = new Comparator()
+		{
+
+			@Override
+			public int compare(Object o1, Object o2) 
+			{
+				return 0;
+			}
+		
+		};
+		temperatureInfos.stream();
 }

@@ -13,6 +13,8 @@ public class Program
 		
 		TemperatureInfo first = temperatureInfos.get(0);
 		
+		furthestFromEquator(temperatureInfos);
+		
 		printYearsOfDecemberTemperaturesInSouth(temperatureInfos);
 		
 		System.out.println();
@@ -150,4 +152,14 @@ public class Program
 				.map(x -> x.getCity()).sorted(Comparator.reverseOrder()).distinct().forEach(System.out::println);
 		
 	}
+	// 5 grada nai daleche ot ekvatora
+	public static void furthestFromEquator(List<TemperatureInfo> temperatureInfos) {
+		temperatureInfos.stream()
+		.sorted(Comparator.comparingDouble(TemperatureInfo::getLatitudeValue).reversed())
+		.map(x -> x.getCity())
+		.distinct()
+		.limit(5)
+		.forEach(System.out::println);;
+	}
+	
 }

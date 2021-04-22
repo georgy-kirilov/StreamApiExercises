@@ -36,6 +36,9 @@ public class Program
 		System.out.println();
 		temperatureWhereYearBetween1950and1965(temperatureInfos);
 		
+		System.out.println();
+		Anastasia_Nikova.citiesFromNorthToSouth(temperatureInfos);
+		
 	}
 
 	static void printUniqueCitiesWithHighTemperatures(List<TemperatureInfo> temperatureInfos)
